@@ -26,7 +26,7 @@ namespace Chat_GUI
         {
             InitializeComponent();
             new Controller(this);
-            this._chatView = new ChatView();
+            this._chatView = new ChatView(Frame);
         }
 
         public IView GetLogginView(Controller controller)

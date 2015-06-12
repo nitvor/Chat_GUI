@@ -23,20 +23,12 @@ namespace Chat_GUI
         private Controller _controller;
 
         private Model _model;
+        private Frame _frame;
 
-        public ChatView()
+        public ChatView(Frame frame)
         {
             InitializeComponent();
-            if (this._model != null)
-            {
-                foreach (KeyValuePair<string, bool> friend in this._model.GetFriendList())
-                {
-                    foreach (Message m in this._model.GetCoverationWithUser(friend.Key))
-                    {
-                        TextboxMessage.SetValue(TextBlock.TextProperty, m.MessageText);
-                    }
-                }
-            }
+            this._frame = frame;
         }
 
         private void Send(object sender, RoutedEventArgs e)
@@ -57,12 +49,27 @@ namespace Chat_GUI
 
         public void Update()
         {
-            InvalidateVisual();
+            this._frame.Dispatcher.Invoke(() => fill());
+            this._frame.Dispatcher.Invoke(()=>InvalidateVisual());
         }
 
         public void Update(string errorMessage)
         {
             MessageBox.Show(errorMessage);
+        }
+
+        private void fill()
+        {
+            if (this._model != null)
+            {
+                foreach (KeyValuePair<string, bool> friend in this._model.GetFriendList())
+                {
+                    foreach (Message m in this._model.GetCoverationWithUser(friend.Key))
+                    {
+                        TextboxMessage.SetValue(TextBlock.TextProperty, m.MessageText);
+                    }
+                }
+            }
         }
     }
 }
