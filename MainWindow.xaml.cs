@@ -31,7 +31,7 @@ namespace Chat_GUI
 
         public IView GetLogginView(Controller controller)
         {
-            IView logInView = new LoginView();
+            IView logInView = new LoginView(Frame);
             logInView.Initialize(controller, controller.GetModel());
             Frame.Navigate((Page)logInView);
             return logInView;
@@ -39,7 +39,7 @@ namespace Chat_GUI
 
         public IView GetRegistrationView(Controller controller)
         {
-            IView registrationView = new RegistrationView();
+            IView registrationView = new RegistrationView(Frame);
             registrationView.Initialize(controller, controller.GetModel());
             Frame.Navigate((Page)registrationView);
             return registrationView;

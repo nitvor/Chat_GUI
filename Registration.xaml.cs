@@ -21,10 +21,12 @@ namespace Chat_GUI
     public partial class RegistrationView : Page,IView
     {
         private Controller _controller;
+        private Frame _frame;
 
-        public RegistrationView()
+        public RegistrationView(Frame frame)
         {
             InitializeComponent();
+            this._frame = frame;
         }
 
         private void Registrate(object sender, RoutedEventArgs e)
@@ -39,7 +41,7 @@ namespace Chat_GUI
 
         public void Update()
         {
-            InvalidateVisual();
+            this._frame.Dispatcher.Invoke(() => InvalidateVisual());
         }
 
         public void Update(string errorMessage)

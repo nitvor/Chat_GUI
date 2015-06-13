@@ -21,10 +21,12 @@ namespace Chat_GUI
     public partial class LoginView : Page, IView
     {
         private Controller _controller;
+        private Frame _frame;
 
-        public LoginView()
+        public LoginView(Frame frame)
         {
             InitializeComponent();
+            this._frame = frame;
         }
 
         public void Initialize(Controller controller, Model model)
@@ -34,7 +36,7 @@ namespace Chat_GUI
 
         public void Update()
         {
-            InvalidateVisual();
+           this._frame.Dispatcher.Invoke(()=> InvalidateVisual());
         }
 
         public void Update(string errorMessage)
