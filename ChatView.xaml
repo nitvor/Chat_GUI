@@ -13,10 +13,10 @@
         <Button x:Name="ButtonAddFriend" Content="AddFriend" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="100" Click="AddFriend"/>
         <TextBox x:Name="TextboxMessage" HorizontalAlignment="Left" Height="23" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
         <TextBox x:Name="TextboxAddFriend" HorizontalAlignment="Left" Height="23" Margin="10,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-        <RichTextBox x:Name="TextboxChat" HorizontalAlignment="Left" Height="224" Margin="115,10,0,0" VerticalAlignment="Top" Width="167" IsReadOnly="True">
+        <RichTextBox x:Name="TextboxChat" HorizontalAlignment="Left" Height="224" Margin="115,10,0,0" VerticalAlignment="Top" Width="167" IsReadOnly="True" FontFamily="Arial Black">
             <FlowDocument>
                 <Paragraph>
-                    <Run Text=""/>
+                    <Run Text="WTF?"/>
                 </Paragraph>
             </FlowDocument>
         </RichTextBox>

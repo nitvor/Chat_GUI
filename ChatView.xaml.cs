@@ -50,7 +50,7 @@ namespace Chat_GUI
         public void Update()
         {
             this._frame.Dispatcher.Invoke(() => fill());
-            this._frame.Dispatcher.Invoke(()=>InvalidateVisual());
+            this._frame.Dispatcher.Invoke(() => InvalidateVisual());
         }
 
         public void Update(string errorMessage)
@@ -64,10 +64,12 @@ namespace Chat_GUI
             {
                 foreach (KeyValuePair<string, bool> friend in this._model.GetFriendList())
                 {
+                    FlowDocument myFlowDoc = new FlowDocument();
                     foreach (Message m in this._model.GetCoverationWithUser(friend.Key))
                     {
-                        TextboxMessage.SetValue(TextBlock.TextProperty, m.MessageText);
+                        myFlowDoc.Blocks.Add(new Paragraph(new Run(m.MessageText)));
                     }
+                    TextboxChat.Document = myFlowDoc;
                 }
             }
         }
