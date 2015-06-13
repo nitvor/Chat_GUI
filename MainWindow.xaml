@@ -3,7 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Frame x:Name="Frame" Content="Frame" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="497"/>
+
+        <DockPanel HorizontalAlignment="Left" LastChildFill="False" Margin="10,10,0,0" VerticalAlignment="Top">
+            <Frame x:Name="Frame" Content="Frame" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" ScrollViewer.VerticalScrollBarVisibility="Disabled" />
+        </DockPanel >
 
     </Grid>
 </Window>
