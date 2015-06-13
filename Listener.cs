@@ -50,18 +50,19 @@ namespace Chat_GUI
                     string str = this._inputStream.ReadLine();
                     string tmp = "";
                     string pattern = @"\b</\b";
-                    if (str != null) {
-                        if (str!=null && Regex.Matches(str, pattern).Count == 0 && !str.EndsWith("/>"))
+                    if (Regex.Matches(str, pattern).Count == 0 && !str.EndsWith("/>"))
+                    {
+                        while (!tmp.StartsWith("</"))
                         {
-                            while (!tmp.StartsWith("</"))
-                            {
-                                tmp = this._inputStream.ReadLine();
-                                str += tmp;
-                            }
+                            tmp = this._inputStream.ReadLine();
+                            str += tmp;
                         }
-                        XElement xe = XElement.Parse(str);
-                        this._controller.Receive(xe);
-                   }
+                    }
+                    XElement xe = XElement.Parse(str);
+                    this._controller.Receive(xe);
+
+           
+
             }
         }
     }
