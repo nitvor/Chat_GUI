@@ -7,11 +7,11 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="ChatView">
 
-    
+
     <Grid>
-        <Button x:Name="ButtonSenden" Content="Senden" HorizontalAlignment="Left" Margin="207,239,0,0" VerticalAlignment="Top" Width="75" Click="Send"/>
+        <Button x:Name="ButtonSenden" Content="Senden" HorizontalAlignment="Left" Margin="206,239,0,0" VerticalAlignment="Top" Width="76" Click="Send" Height="20"/>
         <Button x:Name="ButtonAddFriend" Content="AddFriend" HorizontalAlignment="Left" Margin="10,187,0,0" VerticalAlignment="Top" Width="100" Click="AddFriend"/>
-        <TextBox x:Name="TextboxMessage" HorizontalAlignment="Left" Height="23" Margin="10,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
+        <TextBox x:Name="TextboxMessage" HorizontalAlignment="Left" Height="20" Margin="10,239,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="191"/>
         <TextBox x:Name="TextboxAddFriend" HorizontalAlignment="Left" Height="23" Margin="10,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
         <RichTextBox x:Name="TextboxChat" HorizontalAlignment="Left" Height="224" Margin="115,10,0,0" VerticalAlignment="Top" Width="167" IsReadOnly="True" FontFamily="Arial Black">
             <FlowDocument/>

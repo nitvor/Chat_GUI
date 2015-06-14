@@ -18,12 +18,13 @@ namespace Chat_GUI
     /// <summary>
     /// Interaktionslogik für ChatView.xaml
     /// </summary>
-    public partial class ChatView : Page,IView
+    public partial class ChatView : Page, IView
     {
         private Controller _controller;
 
         private Model _model;
         private Frame _frame;
+        private string _sendTo = "";
 
         public ChatView(Frame frame)
         {
@@ -33,12 +34,20 @@ namespace Chat_GUI
 
         private void Send(object sender, RoutedEventArgs e)
         {
-
+            if (this._sendTo != "") {
+                this._controller.SendMessage(_sendTo, TextboxMessage.Text);
+                TextboxMessage.Text = "";
+            }
+            else
+            {
+                TextboxMessage.Text = "";
+            }
         }
 
         private void AddFriend(object sender, RoutedEventArgs e)
         {
             this._controller.AddFriend(TextboxAddFriend.Text);
+            TextboxAddFriend.Text = "";
         }
 
         public void Initialize(Controller controller, Model model)
@@ -62,9 +71,25 @@ namespace Chat_GUI
         {
             if (this._model != null)
             {
+                FriendList.Items.Clear();
                 foreach (KeyValuePair<string, bool> friend in this._model.GetFriendList())
                 {
                     FlowDocument myFlowDoc = new FlowDocument();
+                    TreeViewItem item = new TreeViewItem();
+                    Console.WriteLine("Ausgabe: " + FriendList.Items.Equals(friend.Key));
+                    if (friend.Value == true)
+                    {
+                        item.Foreground = Brushes.Green;
+                    }
+                    else
+                    {
+                        item.Foreground = Brushes.Red;
+                    }
+                    item.Header = friend.Key;
+                    item.Name = friend.Key;
+                    item.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(selectedConversation);
+                    FriendList.Items.Add(item);
+
                     foreach (Message m in this._model.GetCoverationWithUser(friend.Key))
                     {
                         myFlowDoc.Blocks.Add(new Paragraph(new Run(m.MessageText)));
@@ -73,5 +98,12 @@ namespace Chat_GUI
                 }
             }
         }
+
+        private void selectedConversation(object sender, RoutedEventArgs e)
+        {
+            TreeViewItem item = sender as TreeViewItem;
+            _sendTo = item.Header as string;
+        }
+
     }
 }
