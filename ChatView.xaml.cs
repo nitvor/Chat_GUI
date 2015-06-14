@@ -38,7 +38,7 @@ namespace Chat_GUI
 
         private void AddFriend(object sender, RoutedEventArgs e)
         {
-
+            this._controller.AddFriend(TextboxAddFriend.Text);
         }
 
         public void Initialize(Controller controller, Model model)

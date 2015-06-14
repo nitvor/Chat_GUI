@@ -90,6 +90,11 @@ namespace Chat_GUI
         {
             lock (this.semaphore)
             {
+                if (this._model != null)
+                {
+                    this._model = null;
+                    this.LogOut();
+                }
                 this._userName = userName;
                 XElement e = new XElement("logIn");
                 e.Add(new XElement("name", userName));
@@ -102,6 +107,11 @@ namespace Chat_GUI
         {
             lock (this.semaphore)
             {
+                if (this._model != null)
+                {
+                    this._model = null;
+                    this.LogOut();
+                }
                 this._userName = userName;
                 XElement e = new XElement("registrate");
                 e.Add(new XElement("name", userName));
