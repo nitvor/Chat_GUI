@@ -31,7 +31,7 @@ namespace Chat_GUI
 
         private void Registrate(object sender, RoutedEventArgs e)
         {
-            this._controller.Registrate(TextBoxBenutzername.Text, TextboxPasswort.Text);
+            this._controller.Registrate(TextBoxBenutzername.Text, TextboxPasswort.Password);
         }
 
         public void Initialize(Controller controller, Model model)

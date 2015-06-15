@@ -11,14 +11,26 @@ using System.Xml.Linq;
 
 namespace Chat_GUI
 {
+    /// <summary>
+    /// Listener schickt die Daten zum Server und lauscht mit ob der Server Daten an den Client schickt.
+    /// </summary>
     public class Listener
     {
+        /// <summary>
+        /// Deklaration der Variablen
+        /// </summary>
         private Controller _controller;
         private StreamReader _inputStream;
         private StreamWriter _outputStream;
         private Thread _receiveThread;
         private TcpClient _tcpClient;
 
+        /// <summary>
+        /// Listener muss ein Controller übergeben werden und er baut die Verbindung zum Server auf.
+        /// Weißt dem inputStream den StreamWriter zu und dem outputStream den StreamReader zu.
+        /// Start ein Thread der im Hintergrund lauscht ob der Server Daten zum Client schickt.
+        /// </summary>
+        /// <param name="controller">Clientsteuerung</param>
         public Listener(Controller controller)
         {
             this._controller = controller;
@@ -30,6 +42,10 @@ namespace Chat_GUI
             this._receiveThread.Start();
         }
 
+        /// <summary>
+        /// Um die Daten zum Server zu schicken.
+        /// </summary>
+        /// <param name="element">Daten für Server</param>
         public void Send(XElement element)
         {
             try
@@ -43,6 +59,9 @@ namespace Chat_GUI
             }
         }
 
+        /// <summary>
+        /// Um die Daten an den Controller zuschicken, der sieh auswertet.
+        /// </summary>
         private void receive()
         {
             while (true)
@@ -59,10 +78,7 @@ namespace Chat_GUI
                         }
                     }
                     XElement xe = XElement.Parse(str);
-                    this._controller.Receive(xe);
-
-           
-
+                    this._controller.Receive(xe); 
             }
         }
     }
