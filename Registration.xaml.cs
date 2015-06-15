@@ -31,7 +31,16 @@ namespace Chat_GUI
 
         private void Registrate(object sender, RoutedEventArgs e)
         {
-            this._controller.Registrate(TextBoxBenutzername.Text, TextboxPasswort.Password);
+            if (TextboxPasswort.Password == TextboxPasswortWdh.Password) 
+            {
+                this._controller.Registrate(TextBoxBenutzername.Text, TextboxPasswort.Password);
+            }
+            else
+            {
+                TextboxPasswort.Password = "";
+                TextboxPasswortWdh.Password = "";
+                MessageBox.Show("Passwort stimmt nicht überein.");
+            }
         }
 
         public void Initialize(Controller controller, Model model)
