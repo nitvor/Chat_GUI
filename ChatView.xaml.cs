@@ -58,8 +58,8 @@ namespace Chat_GUI
 
         public void Update()
         {
-            this._frame.Dispatcher.Invoke(() => fill());
-            this._frame.Dispatcher.Invoke(() => InvalidateVisual());
+            this._frame.Dispatcher.InvokeAsync(() => fill());
+            this._frame.Dispatcher.InvokeAsync(() => InvalidateVisual());
         }
 
         public void Update(string errorMessage)
