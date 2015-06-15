@@ -95,8 +95,8 @@ namespace Chat_GUI
                         {
                             foreach (XElement friend in element.Nodes())
                             {
-                                this._model.AddFriend(friend.Value.TrimEnd());
-                                this._model.SetFriendStatus(friend.Value.TrimEnd(), Convert.ToBoolean(friend.Attribute("online").Value));
+                                this._model.AddFriend(friend.Value);
+                                this._model.SetFriendStatus(friend.Value, Convert.ToBoolean(friend.Attribute("online").Value));
                             }
                         }
                         /*
@@ -111,7 +111,7 @@ namespace Chat_GUI
                          */
                         else if (element.Name.ToString() == "message")
                         {
-                            Message m = new Message(element.Attribute("from").Value.TrimEnd(), element.Attribute("to").Value.TrimEnd(), Convert.ToDateTime(element.Attribute("time").Value), element.Value);
+                            Message m = new Message(element.Attribute("from").Value, element.Attribute("to").Value, Convert.ToDateTime(element.Attribute("time").Value), element.Value);
                             this._model.AddMessage(m);
                         }
                         else if (element.Name.ToString() == "logedIn")
