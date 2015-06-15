@@ -83,25 +83,29 @@ namespace Chat_GUI
                     {
                         item.Foreground = Brushes.Red;
                     }
-                    if (this._sendTo == friend.Key) {
+                    if (this._sendTo == friend.Key)
+                    {
                         item.Background = Brushes.LightBlue;
                     }
                     item.Header = friend.Key;
                     item.Name = friend.Key; //Schauen ob noch benötigt
                     item.PreviewMouseLeftButtonDown += new MouseButtonEventHandler(selectedConversation);
                     FriendList.Items.Add(item);
-
-                    if (this._sendTo != "") {
-                        FlowDocument myFlowDoc = new FlowDocument();
-                        TextboxChat.Document.Blocks.Clear();
-                        foreach (Message m in this._model.GetCoverationWithUser(friend.Key))
-                        {
-                            myFlowDoc.Blocks.Add(new Paragraph(new Run(m.ToUser + " says: " + m.MessageText)));
-                            myFlowDoc.Blocks.Add(new Paragraph(new Run(m.Timestamp.ToString())));
-                        }
-                        TextboxChat.Document = myFlowDoc;
-                    }
                 }
+
+                if (this._sendTo != "")
+                {
+                    FlowDocument myFlowDoc = new FlowDocument();
+                    TextboxChat.Document.Blocks.Clear();
+                    foreach (Message m in this._model.GetCoverationWithUser(this._sendTo))
+                    {
+
+                        myFlowDoc.Blocks.Add(new Paragraph(new Run(m.Timestamp.ToString() + " " + m.FromUser + " says: ")));
+                        myFlowDoc.Blocks.Add(new Paragraph(new Run(m.MessageText)));
+                    }
+                    TextboxChat.Document = myFlowDoc;
+                }
+
             }
         }
 
@@ -109,7 +113,8 @@ namespace Chat_GUI
         {
             TreeViewItem item = sender as TreeViewItem;
             _sendTo = item.Header as string;
-            this.fill();
+            //this.fill();
+            this.Update();
         }
 
     }

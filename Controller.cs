@@ -114,6 +114,14 @@ namespace Chat_GUI
                             Message m = new Message(element.Attribute("from").Value.TrimEnd(), element.Attribute("to").Value.TrimEnd(), Convert.ToDateTime(element.Attribute("time").Value), element.Value);
                             this._model.AddMessage(m);
                         }
+                        else if (element.Name.ToString() == "logedIn")
+                        {
+                            this._model._friendList[element.Value].Online = true;
+                        }
+                        else if (element.Name.ToString() == "logedOut")
+                        {
+                            this._model._friendList[element.Value].Online = false;
+                        }
                     }
                     this._view.Update();
                 }
